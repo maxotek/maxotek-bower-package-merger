@@ -1,0 +1,34 @@
+{
+  "name": "maxotek-bower-package-merger",
+  "private": false,
+  "version": "1.0.0",
+  "description": "Merges bower package from other other projects into a main project",
+  "main": "./src/index.js",
+  "repository": "https://github.com/maxotek/mx-bower-package-merger",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mxbwrpkgmrgr": "./bin/mxbwrpkgmrgr.js"
+  },
+  "author": "partho",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-eslint": "4.0.2",
+    "gulp-load-plugins": "1.5.0",
+    "gulp-uglify-es": "1.0.4",
+    "gulp-concat": "2.6.1",
+    "gulp-header": "2.0.5",
+    "gulp-footer": "2.0.1",
+    "gulp-filesize": "0.0.6",
+    "gulp-rename": "1.2.3",
+    "gulp-util": "~3.0.1",
+    "eslint": "4.18.1",
+    "eslint-plugin-jasmine": "2.10.1"
+  },
+  "dependencies": {
+    "commander": "2.14.1",
+    "mx-color-logger": "1.0.5"
+  }
+}
