@@ -50,6 +50,11 @@ pluginProjDirectories.forEach(pluginName => {
     }
 
     var bowerFile = path.join(projDir, "bower.json");
+    if (!fs.existsSync(bowerFile)) {
+        console.warn(`No bower.json exists in ${bowerFile}`);
+        return;
+    }
+
     var pluginPackages = JSON.parse(fs.readFileSync(bowerFile)).dependencies;
 
     Object.keys(pluginPackages).forEach(function (pluginPackage) {
