@@ -10,8 +10,6 @@ logger.init();
 
 var version = pkg.version;
 
-console.info(JSON.stringify(process.argv, null, "\t"));
-
 program
     .version(version)
     .option("-c, --child <value>", "The root directory where all child modules exist.")
