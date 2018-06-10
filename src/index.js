@@ -10,7 +10,7 @@ logger.init();
 
 var version = pkg.version;
 
-console.log(JSON.stringify(process.argv, null, "\t"));
+console.info(JSON.stringify(process.argv, null, "\t"));
 
 program
     .version(version)
