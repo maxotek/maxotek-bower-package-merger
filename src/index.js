@@ -14,6 +14,7 @@ program
     .version(version)
     .option("-c, --child <value>", "The root directory where all child modules exist.")
     .option("-p, --parent <value>", "The parent project into which the bower packages must be merged")
+    .option("-t, --type <value>", "The package type to merge: bower or npm")
     .parse(process.argv);
 
 console.info("Maxotek Bower Package Merger v " + version);
@@ -33,7 +34,31 @@ if (!parentDir) {
     process.exit(-1);
 }
 
-var rootBowerFile = path.join(parentDir, "bower.json");
+if (!program.type) {
+    console.error("Type was not specified");
+    program.outputHelp();
+    process.exit(-1);
+}
+
+var packageFileName;
+
+switch (program.type) {
+case "bower":
+    packageFileName = "bower.json";
+    break;
+
+case "npm":
+    packageFileName = "package.json";
+    break;
+
+default:
+    console.error("Invalid Type was specified. Supported: bower or npm");
+    program.outputHelp();
+    process.exit(-1);
+    break;
+}
+
+var rootBowerFile = path.join(parentDir, packageFileName);
 
 var rootBowerObj = JSON.parse(fs.readFileSync(rootBowerFile));
 var rootBowerPackages = rootBowerObj.dependencies;
@@ -49,9 +74,9 @@ pluginProjDirectories.forEach(pluginName => {
         return;
     }
 
-    var bowerFile = path.join(projDir, "bower.json");
+    var bowerFile = path.join(projDir, packageFileName);
     if (!fs.existsSync(bowerFile)) {
-        console.warn(`No bower.json exists in ${bowerFile}`);
+        console.warn(`No ${packageFileName} exists in ${bowerFile}`);
         return;
     }
 
